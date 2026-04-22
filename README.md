@@ -62,15 +62,6 @@ For most problems, I include:
 
 ---
 
-## 📈 Progress Tracker
-
-* ✅ Easy: 0
-* 🔶 Medium: 0
-* 🔴 Hard: 0
-
-*(Update regularly to track growth)*
-
----
 
 ## 💡 Motivation
 

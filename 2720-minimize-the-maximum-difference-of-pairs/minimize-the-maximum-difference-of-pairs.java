@@ -1,29 +1,31 @@
-class Solution {
-    public int minimizeMax(int[] nums, int p) {
+class Solution
+{
+    public int minimizeMax(int[] nums, int p)
+    {
+        int ans=0;
         Arrays.sort(nums);
-        int n = nums.length;
-        int l = -1, finals = (int)1e9 + 7;
-        while (l < finals - 1) 
+        for(int l=0,r=nums[nums.length-1]-nums[0];l<=r;)
         {
-            int mid = l + (finals - l) / 2;
-            int count = 0;
-            for (int i = 1; i < n; i++) 
+            int mid=(l+r)/2;
+            int cnt=0;
+            for(int i=0;i<nums.length-1;i++)
             {
-                if (nums[i] - nums[i - 1] <= mid) 
+                if(nums[i+1]-nums[i]<=mid)
                 {
-                    count++;
-                    i++; 
+                    cnt++;
+                    i++;
                 }
             }
-            if (count >= p) 
+            if(cnt>=p)
             {
-                finals = mid;
-            } 
-            else 
+                ans=mid;
+                r=mid-1;
+            }
+            else
             {
-                l = mid;
+                l=mid+1;
             }
         }
-        return finals;
+        return ans;
     }
 }

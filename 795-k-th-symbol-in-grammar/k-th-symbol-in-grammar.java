@@ -1,11 +1,16 @@
 class Solution {
     public int kthGrammar(int n, int k) {
-        if (n== 1||k== 1) 
-        return 0;
-        int len =(int)Math.pow(2,n-1);
-        int mid =len/2;
-        if (k<=mid)
-         return kthGrammar(n-1 ,k);
-        return 1-kthGrammar(n-1 ,k-mid);
+        boolean same = true;
+        n = (int) Math.pow(2,n-1);
+
+        while(n!=1){
+            n /= 2;
+            System.out.print(n+" ");
+            if(k>n){
+                k -= n;
+                same = !same;
+            }
+        }
+        return same ? 0 : 1;
     }
 }

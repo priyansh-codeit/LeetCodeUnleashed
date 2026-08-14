@@ -1,25 +1,26 @@
-
 char* removeDuplicateLetters(char* s){
-    int count[26];
-   int  visited[26];
-    int n=strlen(s),top=-1;
-    char* stack=malloc((n+1)*sizeof(char));
+    int last[26]={0},used[26]={0};
+    int n=strlen(s),top=0;
+    char* ans=malloc((n+1)*sizeof(char));
 
     for(int i=0;i<n;i++)
-        count[s[i]-'a']++;
+        last[s[i]-'a']=i;
 
     for(int i=0;i<n;i++){
-        char c=s[i];
-        count[c-'a']--;
-        if(visited[c-'a'])
-        continue;
-        while(top>=0&&stack[top]>c&&count[stack[top]-'a']>0){
-            visited[stack[top]-'a']=0;
+        int c=s[i]-'a';
+
+        if(used[c])
+            continue;
+
+        while(top>0&&ans[top-1]>s[i]&&last[ans[top-1]-'a']>i){
+            used[ans[top-1]-'a']=0;
             top--;
         }
-        stack[++top]=c;
-        visited[c-'a']=1;
+
+        ans[top++]=s[i];
+        used[c]=1;
     }
-    stack[top+1]='\0';
-    return stack;
+
+    ans[top]='\0';
+    return ans;
 }

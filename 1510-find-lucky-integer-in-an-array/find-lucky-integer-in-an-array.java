@@ -1,15 +1,12 @@
 class Solution {
     public int findLucky(int[] arr) {
-        Arrays.sort(arr);
-        for(int i=arr.length-1;i>=0;){
-            int count=0;
-            int num=arr[i];
-            while(i>=0&&arr[i]==num){
-                count++;
-                i--;
-            }
-            if(count==num){
-                return num;
+        int[] freq=new int[501];
+        for (int num :arr) {
+            freq[num]++;
+        }
+        for(int i=500;i>0;i--) {
+            if (freq[i]==i) {
+                return i;
             }
         }
         return -1;
